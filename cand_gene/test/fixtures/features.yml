@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  comment: MyText
+  rating: 1
+  pubmed: 1
+  url: MyString
+
+two:
+  comment: MyText
+  rating: 1
+  pubmed: 1
+  url: MyString
