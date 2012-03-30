@@ -1,0 +1,11 @@
+CandidateGenes repository
+
+To create a simple, collaborative way to gather information about genes
+that may be involved in diseases.
+
+This is my first Rails application, so will probably require many
+revisions, and perhaps a rewrite.  The initial version is in the
+cand_gene subdirectory.
+
+Peter Chines <pchines@gmail.com>
+
