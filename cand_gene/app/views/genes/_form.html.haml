@@ -1,0 +1,10 @@
+= form_for @gene do |f|
+  -if @gene.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@gene.errors.count, "error")} prohibited this gene from being saved:"
+      %ul
+        - @gene.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

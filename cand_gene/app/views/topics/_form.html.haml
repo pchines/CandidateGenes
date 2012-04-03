@@ -1,0 +1,18 @@
+= form_for @topic do |f|
+  %table
+    %tr
+      %td= label :topic, :name, 'Feature name:'
+      %td= text_field :topic, 'name'
+    %tr
+      %td= label :topic, :description, 'Description:'
+      %td= text_field :topic, 'description', :class => 'textbox'
+
+  -if @topic.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@topic.errors.count, "error")} prohibited this topic from being saved:"
+      %ul
+        - @topic.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
