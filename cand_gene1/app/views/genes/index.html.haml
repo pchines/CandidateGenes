@@ -1,0 +1,25 @@
+%h1 Listing genes
+
+%table
+  %tr
+    %th Symbol
+    %th Long name
+    %th Summary
+    %th Assigned to
+    %th
+    %th
+    %th
+
+  - @genes.each do |gene|
+    %tr
+      %td= gene.symbol
+      %td= gene.long_name
+      %td= gene.summary
+      %td= gene.assigned_to
+      %td= link_to 'Show', gene
+      %td= link_to 'Edit', edit_gene_path(gene)
+      %td= link_to 'Destroy', gene, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Gene', new_gene_path

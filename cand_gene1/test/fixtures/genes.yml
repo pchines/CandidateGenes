@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  symbol: MyString
+  long_name: MyString
+  summary: MyText
+  assigned_to: 1
+
+two:
+  symbol: MyString
+  long_name: MyString
+  summary: MyText
+  assigned_to: 1

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Gene:
+  = @feature.gene_id
+%p
+  %b Topic:
+  = @feature.topic_id
+%p
+  %b Url:
+  = @feature.url
+%p
+  %b Pubmed:
+  = @feature.pubmed
+%p
+  %b Comment:
+  = @feature.comment
+%p
+  %b Rating:
+  = @feature.rating
+
+= link_to 'Edit', edit_feature_path(@feature)
+\|
+= link_to 'Back', features_path

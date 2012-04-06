@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Symbol:
+  = @gene.symbol
+%p
+  %b Long name:
+  = @gene.long_name
+%p
+  %b Summary:
+  = @gene.summary
+%p
+  %b Assigned to:
+  = @gene.assigned_to
+
+= link_to 'Edit', edit_gene_path(@gene)
+\|
+= link_to 'Back', genes_path

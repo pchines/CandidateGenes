@@ -1,0 +1,29 @@
+%h1 Listing features
+
+%table
+  %tr
+    %th Gene
+    %th Topic
+    %th Url
+    %th Pubmed
+    %th Comment
+    %th Rating
+    %th
+    %th
+    %th
+
+  - @features.each do |feature|
+    %tr
+      %td= feature.gene_id
+      %td= feature.topic_id
+      %td= feature.url
+      %td= feature.pubmed
+      %td= feature.comment
+      %td= feature.rating
+      %td= link_to 'Show', feature
+      %td= link_to 'Edit', edit_feature_path(feature)
+      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Feature', new_feature_path
