@@ -6,17 +6,24 @@
         - @gene.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :symbol
-    = f.text_field :symbol
-  .field
-    = f.label :long_name
-    = f.text_field :long_name
-  .field
-    = f.label :summary
-    = f.text_area :summary
-  .field
-    = f.label :assigned_to
-    = f.number_field :assigned_to
+  %table
+    %tr
+      .field
+      %td= f.label :symbol
+      %td= f.text_field :symbol
+    %tr
+      .field
+      %td= f.label :long_name
+      %td= f.text_field :long_name
+    %tr
+      .field
+      %td= f.label :summary
+      %td= f.text_area :summary
+    %tr
+      .field
+      %td= f.label :assigned_to
+      %td= f.number_field :assigned_to
+
+  %br
   .actions
     = f.submit 'Save'

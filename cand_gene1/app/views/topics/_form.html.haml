@@ -6,11 +6,16 @@
         - @topic.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
+  %table
+    %tr
+      .field
+      %td= f.label :name
+      %td= f.text_field :name
+    %tr
+      .field
+      %td= f.label :description
+      %td= f.text_area :description
+
+  %br
   .actions
     = f.submit 'Save'

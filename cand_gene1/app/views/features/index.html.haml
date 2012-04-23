@@ -2,28 +2,28 @@
 
 %table
   %tr
+    %th Show
+    %th Edit
+    %th Delete
     %th Gene
     %th Topic
     %th Url
     %th Pubmed
     %th Comment
     %th Rating
-    %th
-    %th
-    %th
 
   - @features.each do |feature|
     %tr
+      %td= link_to 'Show', gene_feature_path(feature.gene_id,feature.id)
+      %td= link_to 'Edit', edit_gene_feature_path(feature.gene_id,feature.id)
+      %td= link_to 'Destroy', gene_feature_path(feature.gene_id,feature.id), :confirm => 'Are you sure?', :method => :delete
       %td= feature.gene_id
       %td= feature.topic_id
       %td= feature.url
       %td= feature.pubmed
       %td= feature.comment
       %td= feature.rating
-      %td= link_to 'Show', feature
-      %td= link_to 'Edit', edit_feature_path(feature)
-      %td= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Feature', new_feature_path
+= link_to 'New Feature', new_gene_feature_path(@gene_id)

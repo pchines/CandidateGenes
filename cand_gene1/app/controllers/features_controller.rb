@@ -2,7 +2,8 @@ class FeaturesController < ApplicationController
   # GET /features
   # GET /features.json
   def index
-    @features = Feature.all
+    @gene = Gene.find(params[:gene_id])
+    @features = @gene.features
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,9 @@ class FeaturesController < ApplicationController
   # GET /features/1
   # GET /features/1.json
   def show
-    @feature = Feature.find(params[:id])
+    @gene = Gene.find(params[:gene_id])
+    @feature = @gene.features.find(params[:id])
+    #@feature = Feature.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +27,9 @@ class FeaturesController < ApplicationController
   # GET /features/new
   # GET /features/new.json
   def new
-    @feature = Feature.new
+    @gene    = Gene.find(params[:gene_id])
+    @feature = @gene.features.build
+    @ratings = Feature.all_ratings
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +39,19 @@ class FeaturesController < ApplicationController
 
   # GET /features/1/edit
   def edit
-    @feature = Feature.find(params[:id])
+    @gene    = Gene.find(params[:gene_id])
+    @feature = @gene.features.find(params[:id])
   end
 
   # POST /features
   # POST /features.json
   def create
-    @feature = Feature.new(params[:feature])
+    @gene    = Gene.find(params[:gene_id])
+    @feature = @gene.features.create(params[:feature])
 
     respond_to do |format|
       if @feature.save
-        format.html { redirect_to @feature, notice: 'Feature was successfully created.' }
+        format.html { redirect_to @gene, notice: 'Feature was successfully created.' }
         format.json { render json: @feature, status: :created, location: @feature }
       else
         format.html { render action: "new" }
@@ -56,11 +63,12 @@ class FeaturesController < ApplicationController
   # PUT /features/1
   # PUT /features/1.json
   def update
-    @feature = Feature.find(params[:id])
+    @gene    = Gene.find(params[:gene_id])
+    @feature = @gene.features.find(params[:id])
 
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
-        format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
+        format.html { redirect_to @gene, notice: 'Feature was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,11 +80,12 @@ class FeaturesController < ApplicationController
   # DELETE /features/1
   # DELETE /features/1.json
   def destroy
-    @feature = Feature.find(params[:id])
+    @gene    = Gene.find(params[:gene_id])
+    @feature = @gene.features.find(params[:id])
     @feature.destroy
 
     respond_to do |format|
-      format.html { redirect_to features_url }
+      format.html { redirect_to @gene, notice: 'Feature was removed.' }
       format.json { head :no_content }
     end
   end

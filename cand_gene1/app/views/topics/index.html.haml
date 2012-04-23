@@ -1,20 +1,20 @@
-%h1 Listing topics
+%h1 List of Topics
 
 %table
   %tr
+    %th Show
+    %th Edit
+    %th Delete
     %th Name
     %th Description
-    %th
-    %th
-    %th
 
   - @topics.each do |topic|
     %tr
+      %td= link_to image_tag('view-icon.png', :alt => 'Show'), topic
+      %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_topic_path(topic)
+      %td= link_to image_tag('delete-icon.png', :alt => 'Destroy'), topic, :confirm => 'Are you sure you want to delete this topic?', :method => :delete
       %td= topic.name
       %td= topic.description
-      %td= link_to 'Show', topic
-      %td= link_to 'Edit', edit_topic_path(topic)
-      %td= link_to 'Destroy', topic, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

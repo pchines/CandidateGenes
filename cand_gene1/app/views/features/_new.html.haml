@@ -1,11 +1,4 @@
-= form_for([@gene,@feature]) do |f|
-  -if @feature.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@feature.errors.count, "error")} prohibited this feature from being saved:"
-      %ul
-        - @feature.errors.full_messages.each do |msg|
-          %li= msg
-
+= form_for([@gene,@gene.features.build]) do |f|
   = f.hidden_field :gene_id
 
   %table
