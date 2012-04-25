@@ -2,7 +2,7 @@
   %td= link_to 'Show', gene_feature_path(feature.gene_id,feature.id)
   %td= link_to 'Edit', edit_gene_feature_path(feature.gene_id,feature.id)
   %td= link_to 'Delete', gene_feature_path(feature.gene_id,feature.id), :confirm => 'Are you sure?', :method => :delete
-  %td= feature.topic_id
+  %td= feature.topic.name
   %td= feature.rating
   %td= feature.pubmed
   %td= feature.url

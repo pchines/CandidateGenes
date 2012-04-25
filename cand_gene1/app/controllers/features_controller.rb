@@ -29,7 +29,9 @@ class FeaturesController < ApplicationController
   def new
     @gene    = Gene.find(params[:gene_id])
     @feature = @gene.features.build
-    @ratings = Feature.all_ratings
+    if @remote_user
+      @feature.user = @remote_user
+    end
 
     respond_to do |format|
       format.html # new.html.erb

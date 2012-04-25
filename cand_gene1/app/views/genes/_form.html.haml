@@ -21,8 +21,8 @@
       %td= f.text_area :summary
     %tr
       .field
-      %td= f.label :assigned_to
-      %td= f.number_field :assigned_to
+      %td= f.label :user_id
+      %td= f.select :user_id, User.all_for_select
 
   %br
   .actions
