@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Moebius Gene Safari
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+%body
+
+  .nav_container
+    .nav
+      %h2 Gene Safari
+      %ul
+        %li
+          %a{:href => "/genes"}  Genes
+        %li
+          %a{:href => "/topics"} Topics
+        %li
+          %a{:href => "/users"}  Users
+
+  .global_content
+    = yield
