@@ -3,7 +3,7 @@ class Feature < ActiveRecord::Base
   belongs_to :gene
   belongs_to :topic
   belongs_to :user
-  acts_as_versioned table_name: :feature_versions
+  acts_as_versioned
 
   def self.all_ratings
     return { 'Not assigned'  => 0,

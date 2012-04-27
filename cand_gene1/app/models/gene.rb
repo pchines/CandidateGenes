@@ -2,7 +2,7 @@ class Gene < ActiveRecord::Base
   attr_accessible :user_id, :long_name, :summary, :symbol
   has_many :features
   belongs_to :user
-  acts_as_versioned table_name: :gene_versions
+  acts_as_versioned
 
   def assigned_to
     if self.user_id > 0
