@@ -1,7 +1,7 @@
 %tr
-  %td= link_to 'Show', gene_feature_path(feature.gene_id,feature.id)
-  %td= link_to 'Edit', edit_gene_feature_path(feature.gene_id,feature.id)
-  %td= link_to 'Delete', gene_feature_path(feature.gene_id,feature.id), :confirm => 'Are you sure?', :method => :delete
+  %td= link_to image_tag('view-icon.png', :alt => 'Show'), gene_feature_path(feature.gene_id,feature.id)
+  %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_feature_path(feature.gene_id,feature.id)
+  %td= link_to image_tag('delete-icon.png', :alt => 'Delete'), gene_feature_path(feature.gene_id,feature.id), :confirm => 'Are you sure?', :method => :delete
   %td= feature.topic.name
   %td= feature.rating
   %td= feature.pubmed
