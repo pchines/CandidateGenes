@@ -3,6 +3,9 @@ require 'test_helper'
 class GenesControllerTest < ActionController::TestCase
   setup do
     @gene = genes(:one)
+    #@user = users(:one)
+    #User.create!(@user)
+    #@gene.user_id = @user.id
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class GenesControllerTest < ActionController::TestCase
 
   test "should create gene" do
     assert_difference('Gene.count') do
-      post :create, gene: { assigned_to: @gene.assigned_to, long_name: @gene.long_name, summary: @gene.summary, symbol: @gene.symbol }
+      post :create, gene: { user_id: @gene.user_id, long_name: @gene.long_name, summary: @gene.summary, symbol: @gene.symbol }
     end
 
     assert_redirected_to gene_path(assigns(:gene))
@@ -35,7 +38,7 @@ class GenesControllerTest < ActionController::TestCase
   end
 
   test "should update gene" do
-    put :update, id: @gene, gene: { assigned_to: @gene.assigned_to, long_name: @gene.long_name, summary: @gene.summary, symbol: @gene.symbol }
+    put :update, id: @gene, gene: { user_id: @gene.user_id, long_name: @gene.long_name, summary: @gene.summary, symbol: @gene.symbol }
     assert_redirected_to gene_path(assigns(:gene))
   end
 

@@ -6,6 +6,6 @@ one:
   is_admin: false
 
 two:
-  username: MyString
-  fullname: MyString
-  is_admin: false
+  username: MyString2
+  fullname: MyString2
+  is_admin: true

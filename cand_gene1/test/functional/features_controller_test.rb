@@ -2,6 +2,7 @@ require 'test_helper'
 
 class FeaturesControllerTest < ActionController::TestCase
   setup do
+    @gene    = genes(:one)
     @feature = features(:one)
   end
 
@@ -12,7 +13,7 @@ class FeaturesControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, gene_id: @gene
     assert_response :success
   end
 
@@ -25,12 +26,12 @@ class FeaturesControllerTest < ActionController::TestCase
   end
 
   test "should show feature" do
-    get :show, id: @feature
+    get :show, id: @feature, gene_id: @gene
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @feature
+    get :edit, id: @feature, gene_id: @gene
     assert_response :success
   end
 
