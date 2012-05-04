@@ -1,4 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  @remote_user = User.find_by_username(ENV['REMOTE_USER'] || 'pchines')
+
+  protected
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      @project_name = "HV Gene Safari"
+      @remote_user = User.find_by_username(username)
+    end
+  end
 end

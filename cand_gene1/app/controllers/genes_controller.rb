@@ -1,4 +1,5 @@
 class GenesController < ApplicationController
+  before_filter :authenticate
   # GET /genes
   # GET /genes.json
   def index

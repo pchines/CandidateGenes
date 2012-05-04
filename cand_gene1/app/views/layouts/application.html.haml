@@ -1,12 +1,18 @@
 !!!
 %html
   %head
-    %title Moebius Gene Safari
+    %title= @project_name
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
 %body
+
+  .page_hdr
+    %table
+      %tr
+        %td#project_name= @project_name
+        %td#remote_user= "You are logged in as #{@remote_user.fullname}"
 
   .nav_container
     .nav
