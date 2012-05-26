@@ -9,12 +9,16 @@
       %td= f.select :topic_id, Topic.all_for_select
     %tr
       .field
-      %td= f.label :url
-      %td= f.url_field :url
+      %td= f.label :author
+      %td= f.number_field :author
     %tr
       .field
       %td= f.label :pubmed
       %td= f.number_field :pubmed
+    %tr
+      .field
+      %td= f.label :url
+      %td= f.url_field :url
     %tr
       .field
       %td= f.label :comment

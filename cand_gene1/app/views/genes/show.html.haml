@@ -4,6 +4,11 @@
   %b Symbol:
   = @gene.symbol
 %p
+  %b Aliases:
+  = @gene.gene_aliases
+  %b
+    = link_to 'Add', new_gene_alias_path(@gene)
+%p
   %b Long name:
   = @gene.long_name
 %p
@@ -12,6 +17,9 @@
 %p
   %b Assigned to:
   = @gene.assigned_to
+%p
+  %b Overall score:
+  = @gene.score
 
 = render 'feature_table'
 

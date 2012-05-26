@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @topics = Topic.find(:all, :order => 'display_order')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class TopicsController < ApplicationController
   # GET /topics/new.json
   def new
     @topic = Topic.new
+    @topic.display_order = Topic.next_order_no
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,17 +41,24 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(params[:topic])
-
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
-        format.json { render json: @topic, status: :created, location: @topic }
-      else
-        format.html { render action: "new" }
+    begin
+      @topic = Topic.new(params[:topic])
+      respond_to do |format|
+	if @topic.save
+	  format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
+	  format.json { render json: @topic, status: :created, location: @topic }
+	else
+	  format.html { render action: "new", notice: 'Topic name already in use.' }
+	  format.json { render json: @topic.errors, status: :unprocessable_entity }
+	end
+      end
+    rescue ActiveRecord::RecordNotUnique
+      respond_to do |format|
+        format.html { redirect_to new_topic_path, notice: 'Topic name already in use.' }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PUT /topics/1

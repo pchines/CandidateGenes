@@ -15,6 +15,10 @@
       .field
       %td= f.label :description
       %td= f.text_area :description
+    %tr
+      .field
+      %td= f.label :display_order
+      %td= f.number_field :display_order, :min => 0, :step => 1
 
   %br
   .actions

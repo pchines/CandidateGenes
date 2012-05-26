@@ -3,6 +3,7 @@
 %table
   %tr
     %th{:colspan => 3}
+    %th Order
     %th Name
     %th Description
 
@@ -11,6 +12,7 @@
       %td= link_to image_tag('view-icon.png', :alt => 'Show'), topic
       %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_topic_path(topic)
       %td= link_to image_tag('delete-icon.png', :alt => 'Destroy'), topic, :confirm => 'Are you sure you want to delete this topic?', :method => :delete
+      %td= topic.display_order
       %td= topic.name
       %td= topic.description
 

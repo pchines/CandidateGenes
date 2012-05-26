@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427203456) do
+ActiveRecord::Schema.define(:version => 20120525215236) do
+
+  create_table "aliases", :force => true do |t|
+    t.integer  "gene_id"
+    t.string   "gene_alias"
+    t.string   "source"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "feature_versions", :force => true do |t|
     t.integer  "feature_id"
@@ -25,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",    :default => 0
+    t.string   "author",     :default => "", :null => false
   end
 
   add_index "feature_versions", ["feature_id"], :name => "index_feature_versions_on_feature_id"
@@ -36,10 +45,11 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
     t.integer  "pubmed"
     t.text     "comment"
     t.integer  "rating"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "user_id",    :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "user_id",    :default => 0,  :null => false
     t.integer  "version"
+    t.string   "author",     :default => "", :null => false
   end
 
   add_index "features", ["gene_id", "topic_id"], :name => "i_gene_topic"
@@ -67,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
     t.integer  "version"
   end
 
+  add_index "genes", ["symbol"], :name => "iu_genesymbol", :unique => true
+
   create_table "topic_versions", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "version"
@@ -74,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "display_order", :default => 0, :null => false
   end
 
   add_index "topic_versions", ["topic_id"], :name => "index_topic_versions_on_topic_id"
@@ -81,10 +94,13 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
   create_table "topics", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.integer  "version"
+    t.integer  "display_order", :default => 0, :null => false
   end
+
+  add_index "topics", ["name"], :name => "iu_topicname", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -94,6 +110,6 @@ ActiveRecord::Schema.define(:version => 20120427203456) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "users", ["username"], :name => "index_users_on_username"
+  add_index "users", ["username"], :name => "iu_username", :unique => true
 
 end

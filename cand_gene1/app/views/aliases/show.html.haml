@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Gene alias:
+  = @alias.gene_alias
+%p
+  %b Resource or status:
+  = @alias.source
+
+= link_to 'Edit', edit_gene_alias_path(@alias)
+\|
+= link_to 'Back', gene_path(@gene)

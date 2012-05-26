@@ -1,0 +1,20 @@
+%p#notice= notice
+
+= form_for([@gene,@alias]) do |f|
+  -if @alias.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@alias.errors.count, "error")} prohibited this alias from being saved:"
+      %ul
+        - @alias.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.hidden_field :gene_id
+
+  .field
+    = f.label :gene_alias
+    = f.text_field :gene_alias
+  .field
+    = f.label :source
+    = f.text_field :source
+  .actions
+    = f.submit 'Save'

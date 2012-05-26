@@ -4,6 +4,7 @@
   %td= link_to image_tag('delete-icon.png', :alt => 'Delete'), gene_feature_path(feature.gene_id,feature.id), :confirm => 'Are you sure?', :method => :delete
   %td= feature.topic.name
   %td= feature.rating
+  %td= feature.author
   %td= feature.pubmed
   %td= feature.url
   %td= feature.comment

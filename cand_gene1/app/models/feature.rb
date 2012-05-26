@@ -1,5 +1,5 @@
 class Feature < ActiveRecord::Base
-  attr_accessible :comment, :gene, :gene_id, :pubmed, :rating, :topic_id, :url, :user_id
+  attr_accessible :comment, :gene, :gene_id, :pubmed, :rating, :topic_id, :url, :user_id, :author
   belongs_to :gene
   belongs_to :topic
   belongs_to :user

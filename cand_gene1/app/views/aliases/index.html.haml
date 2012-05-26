@@ -1,0 +1,23 @@
+%h1 Listing aliases
+
+%p#notice= notice
+
+%table
+  %tr
+    %th
+    %th
+    %th
+    %th Gene alias
+    %th Source
+
+  - @aliases.each do |alias|
+    %tr
+      %td= link_to 'Show', alias
+      %td= link_to 'Edit', edit_alias_path(alias)
+      %td= link_to 'Destroy', alias, :confirm => 'Are you sure?', :method => :delete
+      %td= alias.gene_alias
+      %td= alias.source
+
+%br
+
+= link_to 'New Alias', new_alias_path

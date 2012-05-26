@@ -4,7 +4,9 @@
   %tr
     %th{:colspan => 3}
     %th Symbol
+    %th Aliases
     %th Long name
+    %th Score
     %th Summary
     %th Assigned to
 
@@ -14,7 +16,9 @@
       %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_path(gene)
       %td= link_to image_tag('delete-icon.png', :alt => 'Destroy'), gene, :confirm => 'Are you sure you want to delete this gene?', :method => :delete
       %td= gene.symbol
+      %td= gene.gene_aliases
       %td= gene.long_name
+      %td= gene.score
       %td= gene.summary
       %td= gene.assigned_to
 
