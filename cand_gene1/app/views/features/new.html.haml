@@ -1,5 +1,7 @@
-%h1 New feature
+%h1= "New feature for #{@gene.symbol} gene"
 
 = render 'form'
 
-= link_to 'Back', @gene
+= link_to 'Back to gene', @gene
+
+= render 'genes/variant_table'

@@ -6,6 +6,7 @@ CandGene1::Application.routes.draw do
   resources :genes do
     resources :features
     resources :aliases
+    resources :variants
   end
 
   # The priority is based upon order of creation:

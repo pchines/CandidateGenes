@@ -1,6 +1,4 @@
-%h1 Listing aliases
-
-%p#notice= notice
+%h1= "Aliases for gene #{@gene.symbol}"
 
 %table
   %tr
@@ -10,14 +8,17 @@
     %th Gene alias
     %th Source
 
-  - @aliases.each do |alias|
+  - @aliases.each do |a|
     %tr
-      %td= link_to 'Show', alias
-      %td= link_to 'Edit', edit_alias_path(alias)
-      %td= link_to 'Destroy', alias, :confirm => 'Are you sure?', :method => :delete
-      %td= alias.gene_alias
-      %td= alias.source
+      %td= link_to image_tag('view-icon.png', :alt => 'Show'), gene_alias_path(@gene,a)
+      %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_alias_path(@gene,a)
+      %td= link_to image_tag('delete-icon.png', :alt => 'Delete'), gene_alias_path(@gene,a), :confirm => 'Are you sure?', :method => :delete
+      %td= a.gene_alias
+      %td= a.source
 
 %br
 
-= link_to 'New Alias', new_alias_path
+= link_to 'New Alias', new_gene_alias_path(@gene)
+\|
+= link_to 'Back to gene', @gene
+

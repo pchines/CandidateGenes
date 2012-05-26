@@ -1,0 +1,33 @@
+%h1 Listing variants
+
+%table
+  %tr
+    %th Key
+    %th Function
+    %th Interest
+    %th Nmi
+    %th Dbsnp
+    %th Freq
+    %th Freq finn
+    %th Source
+    %th
+    %th
+    %th
+
+  - @variants.each do |variant|
+    %tr
+      %td= variant.key
+      %td= variant.function
+      %td= variant.interest
+      %td= variant.nmi
+      %td= variant.dbsnp
+      %td= variant.freq
+      %td= variant.freq_finn
+      %td= variant.source
+      %td= link_to 'Show', variant
+      %td= link_to 'Edit', edit_gene_variant_path(@gene,variant)
+      %td= link_to 'Destroy', gene_variant_path(@gene,variant), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Variant', new_gene_variant_path(@gene,@variant)

@@ -2,6 +2,7 @@ class Gene < ActiveRecord::Base
   attr_accessible :user_id, :long_name, :summary, :symbol
   has_many :features
   has_many :aliases
+  has_many :variants
   belongs_to :user
   acts_as_versioned
 

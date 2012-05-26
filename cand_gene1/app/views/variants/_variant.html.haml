@@ -1,0 +1,12 @@
+%tr
+  %td= link_to image_tag('view-icon.png', :alt => 'Show'), gene_variant_path(variant.gene_id,variant.id)
+  %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_variant_path(variant.gene_id,variant.id)
+  %td= link_to image_tag('delete-icon.png', :alt => 'Delete'), gene_variant_path(variant.gene_id,variant.id), :confirm => 'Are you sure?', :method => :delete
+  %td= variant.key
+  %td= variant.function
+  %td= variant.interest
+  %td= variant.nmi
+  %td= variant.dbsnp
+  %td= variant.freq
+  %td= variant.freq_finn
+  %td= variant.source

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key: MyString
+  function: MyString
+  interest: MyString
+  nmi: MyString
+  dbsnp: MyString
+  freq: 1.5
+  freq_finn: 1.5
+  source: MyString
+
+two:
+  key: MyString
+  function: MyString
+  interest: MyString
+  nmi: MyString
+  dbsnp: MyString
+  freq: 1.5
+  freq_finn: 1.5
+  source: MyString

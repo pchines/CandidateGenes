@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525215236) do
+ActiveRecord::Schema.define(:version => 20120526210350) do
 
   create_table "aliases", :force => true do |t|
     t.integer  "gene_id"
@@ -111,5 +111,38 @@ ActiveRecord::Schema.define(:version => 20120525215236) do
   end
 
   add_index "users", ["username"], :name => "iu_username", :unique => true
+
+  create_table "variant_versions", :force => true do |t|
+    t.integer  "variant_id"
+    t.integer  "version"
+    t.integer  "gene_id"
+    t.string   "key"
+    t.string   "function"
+    t.string   "interest"
+    t.string   "nmi"
+    t.string   "dbsnp"
+    t.float    "freq"
+    t.float    "freq_finn"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "variant_versions", ["variant_id"], :name => "index_variant_versions_on_variant_id"
+
+  create_table "variants", :force => true do |t|
+    t.integer  "gene_id"
+    t.string   "key"
+    t.string   "function"
+    t.string   "interest"
+    t.string   "nmi"
+    t.string   "dbsnp"
+    t.float    "freq"
+    t.float    "freq_finn"
+    t.string   "source"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "version"
+  end
 
 end

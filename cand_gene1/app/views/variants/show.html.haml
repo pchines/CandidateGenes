@@ -1,0 +1,28 @@
+%p
+  %b Key:
+  = @variant.key
+%p
+  %b Function:
+  = @variant.function
+%p
+  %b Interest:
+  = @variant.interest
+%p
+  %b Nmi:
+  = @variant.nmi
+%p
+  %b Dbsnp:
+  = @variant.dbsnp
+%p
+  %b Freq:
+  = @variant.freq
+%p
+  %b Freq finn:
+  = @variant.freq_finn
+%p
+  %b Source:
+  = @variant.source
+
+= link_to 'Edit', edit_gene_variant_path(@gene,@variant)
+\|
+= link_to 'Back to gene', @gene

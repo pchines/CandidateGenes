@@ -1,5 +1,12 @@
-%p#notice= notice
-
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Full name:
+  = @user.fullname
+%p
+  - if @user.is_admin
+    %b Administrator
 
 = link_to 'Edit', edit_user_path(@user)
 \|

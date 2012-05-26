@@ -1,10 +1,9 @@
-%p#notice= notice
-
 %p
   %b Symbol:
   = @gene.symbol
 %p
-  %b Aliases:
+  %b
+    = link_to 'Aliases:', gene_aliases_path(@gene)
   = @gene.gene_aliases
   %b
     = link_to 'Add', new_gene_alias_path(@gene)
@@ -21,12 +20,11 @@
   %b Overall score:
   = @gene.score
 
+= link_to 'Edit this gene', edit_gene_path(@gene)
+\|
+= link_to 'Back to gene list', genes_path
+
 = render 'feature_table'
 
-%h2 Add a Feature
+= render 'variant_table'
 
-= render 'features/new'
-
-= link_to 'Edit', edit_gene_path(@gene)
-\|
-= link_to 'Back', genes_path
