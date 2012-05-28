@@ -23,11 +23,22 @@ class Gene < ActiveRecord::Base
   end
 
   def score
-    fs = self.features
-    if fs.nil?
-      return 0
-    else
-      return 999
+    if @score.nil?
+      fx = self.features.select('topic_id, avg(rating) as rating').where('rating > 0').group('topic_id')
+      @topic_count = fx.length
+      @score = 0.0
+      if @topic_count > 0
+        fx.collect { |f| @score += f.rating }
+        @score /= @topic_count
+      end
     end
+    return @score
+  end
+
+  def topic_count
+    if @topic_count.nil?
+      self.score
+    end
+    return @topic_count
   end
 end
