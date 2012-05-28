@@ -17,8 +17,11 @@
   %b Assigned to:
   = @gene.assigned_to
 %p
+  %b Topics Covered
+  = @gene.topics_covered
+%p
   %b Overall score:
-  = @gene.score
+  = "%.1f" % @gene.score
 
 = link_to 'Edit this gene', edit_gene_path(@gene)
 \|
