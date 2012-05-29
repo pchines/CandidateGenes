@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120526210350) do
+ActiveRecord::Schema.define(:version => 20120529143002) do
 
   create_table "aliases", :force => true do |t|
     t.integer  "gene_id"
@@ -71,10 +71,11 @@ ActiveRecord::Schema.define(:version => 20120526210350) do
     t.string   "symbol"
     t.string   "long_name"
     t.text     "summary"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "user_id",    :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "user_id",    :default => 0,  :null => false
     t.integer  "version"
+    t.string   "disease",    :default => "", :null => false
   end
 
   add_index "genes", ["symbol"], :name => "iu_genesymbol", :unique => true
@@ -140,9 +141,10 @@ ActiveRecord::Schema.define(:version => 20120526210350) do
     t.float    "freq"
     t.float    "freq_finn"
     t.string   "source"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "version"
+    t.integer  "validated",  :default => 0, :null => false
   end
 
 end

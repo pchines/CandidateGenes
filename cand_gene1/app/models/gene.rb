@@ -1,5 +1,5 @@
 class Gene < ActiveRecord::Base
-  attr_accessible :user_id, :long_name, :summary, :symbol
+  attr_accessible :user_id, :long_name, :summary, :symbol, :disease
   has_many :features
   has_many :aliases
   has_many :variants
