@@ -1,0 +1,21 @@
+%h1 Listing lookups
+
+%table
+  %tr
+    %th Item
+    %th Value
+    %th
+    %th
+    %th
+
+  - @lookups.each do |lookup|
+    %tr
+      %td= lookup.item
+      %td= lookup.value
+      %td= link_to 'Show', lookup
+      %td= link_to 'Edit', edit_lookup_path(lookup)
+      %td= link_to 'Destroy', lookup, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Lookup', new_lookup_path

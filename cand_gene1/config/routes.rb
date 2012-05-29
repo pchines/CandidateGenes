@@ -1,4 +1,6 @@
 CandGene1::Application.routes.draw do
+  resources :lookups
+
   resources :users
 
   resources :topics

@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+lookups = Lookup.create([
+  { item: 'Project name', value: '' },
+  { item: 'Offline', value: '' }
+  ])
+
