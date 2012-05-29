@@ -6,6 +6,8 @@
         - @variant.errors.full_messages.each do |msg|
           %li= msg
 
+  = f.hidden_field :gene_id
+
   .field
     = f.label :key
     = f.text_field :key
@@ -18,6 +20,9 @@
   .field
     = f.label :nmi
     = f.text_field :nmi
+  .field
+    = f.label :validated
+    = f.select :validated, Variant.all_validation_codes
   .field
     = f.label :dbsnp
     = f.text_field :dbsnp

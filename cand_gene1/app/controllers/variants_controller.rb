@@ -42,11 +42,11 @@ class VariantsController < ApplicationController
   # POST /variants
   # POST /variants.json
   def create
-    @variant = Variant.new(params[:variant])
+    @variant = @gene.variants.create(params[:variant])
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to @variant, notice: 'Variant was successfully created.' }
+        format.html { redirect_to @gene, notice: 'Variant was successfully created.' }
         format.json { render json: @variant, status: :created, location: @variant }
       else
         format.html { render action: "new" }
@@ -62,7 +62,7 @@ class VariantsController < ApplicationController
 
     respond_to do |format|
       if @variant.update_attributes(params[:variant])
-        format.html { redirect_to @variant, notice: 'Variant was successfully updated.' }
+        format.html { redirect_to @gene, notice: 'Variant was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,7 +78,7 @@ class VariantsController < ApplicationController
     @variant.destroy
 
     respond_to do |format|
-      format.html { redirect_to variants_url }
+      format.html { redirect_to @gene }
       format.json { head :no_content }
     end
   end
