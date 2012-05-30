@@ -11,3 +11,7 @@ lookups = Lookup.create([
   { item: 'Offline', value: '' }
   ])
 
+users = User.create([
+  { username: 'lbonnyca', fullname: 'Lori Bonnycastle', is_admin: 1 },
+  { username: 'pchines', fullname: 'Peter Chines', is_admin: 1 },
+  ])

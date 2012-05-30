@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120529204534) do
+ActiveRecord::Schema.define(:version => 20120530013542) do
 
   create_table "aliases", :force => true do |t|
     t.integer  "gene_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120529204534) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id",    :default => 0
+    t.string   "disease"
   end
 
   add_index "gene_versions", ["gene_id"], :name => "index_gene_versions_on_gene_id"
@@ -78,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20120529204534) do
     t.string   "disease",    :default => "", :null => false
   end
 
-  add_index "genes", ["symbol"], :name => "iu_genesymbol", :unique => true
+  add_index "genes", ["symbol", "disease"], :name => "iu_symbol_disease", :unique => true
 
   create_table "lookups", :force => true do |t|
     t.string   "item",                       :null => false
@@ -119,6 +120,23 @@ ActiveRecord::Schema.define(:version => 20120529204534) do
   end
 
   add_index "users", ["username"], :name => "iu_username", :unique => true
+
+  create_table "var_temp", :force => true do |t|
+    t.integer  "gene_id"
+    t.string   "key"
+    t.string   "function"
+    t.string   "interest"
+    t.string   "nmi"
+    t.string   "dbsnp"
+    t.float    "freq"
+    t.float    "freq_finn"
+    t.string   "source"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "version"
+    t.integer  "validated",  :default => 0,  :null => false
+    t.string   "genome",     :default => "", :null => false
+  end
 
   create_table "variant_versions", :force => true do |t|
     t.integer  "variant_id"
