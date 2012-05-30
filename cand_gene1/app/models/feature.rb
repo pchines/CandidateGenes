@@ -14,4 +14,8 @@ class Feature < ActiveRecord::Base
       '5 High interest'      => 5,
       }
   end
+
+  def self.ordered_for_gene(gene_id)
+    return self.find_by_sql("select f.* from features f inner join topics t on t.id = f.topic_id where gene_id = #{gene_id} order by t.display_order")
+  end
 end

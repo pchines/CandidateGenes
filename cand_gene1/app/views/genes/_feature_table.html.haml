@@ -10,7 +10,7 @@
     %th URL
     %th Comment
 
-  = render @gene.features
+  = render Feature.ordered_for_gene(@gene.id)
 
 %br
 = link_to 'Add another feature', new_gene_feature_path(@gene)
