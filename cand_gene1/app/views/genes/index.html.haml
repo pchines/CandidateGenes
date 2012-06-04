@@ -23,7 +23,7 @@
       %td= gene.disease
       %td= gene.topic_count
       %td= "%.1f" % gene.score
-      %td= gene.summary
+      %td= short_text(gene.summary)
       %td= gene.assigned_to
 
 %br
