@@ -17,7 +17,7 @@
     %tr
       .field
       %td= f.label :pubmed
-      %td= f.number_field :pubmed
+      %td= f.text_field :pubmed
     %tr
       .field
       %td= f.label :author
@@ -29,7 +29,7 @@
     %tr
       .field
       %td= f.label :comment
-      %td= f.text_area :comment
+      %td= f.text_area :comment, :cols => 80
     %tr
       .field
       %td= f.label :rating

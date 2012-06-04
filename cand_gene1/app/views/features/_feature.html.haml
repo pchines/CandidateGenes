@@ -5,6 +5,6 @@
   %td= feature.topic.name
   %td= feature.rating
   %td= feature.author
-  %td= feature.pubmed
-  %td= feature.url
+  %td= link_to(feature.pubmed, feature.pubmed_url)
+  %td= link_to(short_url(feature.url), feature.url)
   %td= short_text(feature.comment)
