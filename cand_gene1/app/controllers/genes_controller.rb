@@ -2,7 +2,7 @@ class GenesController < ApplicationController
   # GET /genes
   # GET /genes.json
   def index
-    @genes = Gene.all
+    @genes = Gene.find(:all, :order => 'symbol')
 
     respond_to do |format|
       format.html # index.html.erb

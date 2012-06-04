@@ -10,7 +10,7 @@ class Topic < ActiveRecord::Base
   end
 
   def self.next_order_no
-    new_id = maximum(:id)
+    new_id = self.maximum(:id)
     if new_id.nil?
        new_id = 1
     else

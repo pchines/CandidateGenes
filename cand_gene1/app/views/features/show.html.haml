@@ -1,18 +1,18 @@
 %p
   %b Gene:
-  = @feature.gene_id
+  = @feature.gene.symbol
 %p
   %b Topic:
-  = @feature.topic_id
+  = @feature.topic.name
 %p
   %b Pubmed:
-  = @feature.pubmed
+  = link_to(@feature.pubmed, @feature.pubmed_url)
 %p
   %b Author:
   = @feature.author
 %p
   %b Url:
-  = @feature.url
+  = link_to(@feature.url, @feature.url)
 %p
   %b Comment:
   = @feature.comment.html_safe
