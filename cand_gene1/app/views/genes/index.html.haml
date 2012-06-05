@@ -9,7 +9,7 @@
     %th= link_to 'Disease', genes_path(:order => 'disease')
     %th Score<br>(Topics)
     %th Summary
-    %th= link_to 'Assigned to', genes_path(:order => 'assigned_to')
+    %th= link_to 'Assigned to', genes_path(:order => 'user_id')
 
   - @genes.each do |gene|
     %tr
