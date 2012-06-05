@@ -1,16 +1,15 @@
-%h1 Listing Genes
+%h1 Gene List
 
 %table
   %tr
     %th{:colspan => 3}
-    %th Symbol
+    %th= link_to 'Symbol', genes_path(:order => 'symbol')
     %th Aliases
-    %th Long name
-    %th Disease
-    %th Topics<br>Covered
-    %th Score
+    %th= link_to 'Long name', genes_path(:order => 'long_name')
+    %th= link_to 'Disease', genes_path(:order => 'disease')
+    %th Score<br>(Topics)
     %th Summary
-    %th Assigned to
+    %th= link_to 'Assigned to', genes_path(:order => 'assigned_to')
 
   - @genes.each do |gene|
     %tr
@@ -21,8 +20,7 @@
       %td= gene.gene_aliases
       %td= gene.long_name
       %td= gene.disease
-      %td= gene.topic_count
-      %td= "%.1f" % gene.score
+      %td= sprintf("%.1f (%d)", gene.score, gene.topic_count)
       %td= short_text(gene.summary)
       %td= gene.assigned_to
 
