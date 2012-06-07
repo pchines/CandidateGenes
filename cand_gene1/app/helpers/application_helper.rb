@@ -1,5 +1,5 @@
 module ApplicationHelper
-  @@MAX = 100
+  @@MAX = 200
   @@MAX_URL_LENGTH = 20
 
   def short_text(text)
@@ -7,7 +7,7 @@ module ApplicationHelper
       return ""
     end
     short = text
-    short.sub!('<(br|p)>.*', '...')
+    short.sub!(/(<(br|p)>|\.\s).*/, '...')
     if short.length > @@MAX
       short = short[0,@@MAX-3] + '...'
     end
