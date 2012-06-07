@@ -1,8 +1,18 @@
+.criteria
+  %h3 Search Criteria
+  %p
+    =form_tag(genes_path, :method => :get) do
+      %b Disease:
+      - Gene.all_diseases.each do |d|
+        =check_box_tag('disease[]', d, session[:q][:disease][d])
+        =d
+        &nbsp;&nbsp;
+      %p= submit_tag('Query')
+
 %h1 Gene List
 
 %table
   %tr
-    %th{:colspan => 3}
     %th= link_to 'Symbol', genes_path(:order => 'symbol')
     %th Aliases
     %th= link_to 'Long name', genes_path(:order => 'long_name')
@@ -13,10 +23,7 @@
 
   - @genes.each do |gene|
     %tr
-      %td= link_to image_tag('view-icon.png', :alt => 'Show'), gene
-      %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_path(gene)
-      %td= link_to image_tag('delete-icon.png', :alt => 'Destroy'), gene, :confirm => 'Are you sure you want to delete this gene?', :method => :delete
-      %td= gene.symbol
+      %td= link_to gene.symbol, gene
       %td= gene.gene_aliases
       %td= gene.long_name
       %td= gene.disease

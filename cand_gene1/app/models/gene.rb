@@ -41,4 +41,8 @@ class Gene < ActiveRecord::Base
     end
     return @topic_count
   end
+
+  def self.all_diseases
+    return self.select(:disease).uniq.order('disease').collect { |g| g.disease }
+  end
 end

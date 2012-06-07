@@ -2,8 +2,23 @@ class GenesController < ApplicationController
   # GET /genes
   # GET /genes.json
   def index
-    ord = params[:order] || 'symbol'
-    @genes = Gene.find(:all, :order => ord)
+    session[:order] = params[:order] || session[:order] || 'symbol'
+    session[:q] ||= {}
+    if params[:disease]
+      session[:q][:disease] = {}
+      params[:disease].each do |d|
+        session[:q][:disease][d] = 1
+      end
+    elsif !session[:q][:disease]
+      session[:q][:disease] = {}
+      Gene.all_diseases.each do |d|
+        session[:q][:disease][d] = 1
+      end
+    end
+
+    @genes = Gene.find(:all, :order => session[:order], :conditions => {
+      :disease => session[:q][:disease].keys
+    })
 
     respond_to do |format|
       format.html # index.html.erb
