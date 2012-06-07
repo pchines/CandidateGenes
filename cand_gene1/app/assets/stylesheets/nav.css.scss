@@ -5,7 +5,6 @@
 #project_name {
   border: 0px;
   text-align: left;
-  font-family: 'sans-serif';
   font-style: bold;
   font-size: 24pt;
 }
@@ -13,19 +12,9 @@
   border: 0px;
   text-align: right;
 }
-
-.nav_container {
-  position: absolute;
-  left: 0;
-  padding: 2px 0;
-  width: 195px;
-  height: 100%;
-}
-
-.nav {
+#nav_link {
+  font-style: bold;
 }
 
 .global_content {
-  margin: 0 10px 15px 210px;
-  padding: 2px 0 0 0;
 }

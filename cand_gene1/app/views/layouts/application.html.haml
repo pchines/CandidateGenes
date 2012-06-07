@@ -12,18 +12,13 @@
     %table
       %tr
         %td#project_name= @project_name
-        %td#remote_user= "You are logged in as #{@remote_user.fullname}"
-
-  .nav_container
-    .nav
-      %h2 Gene Safari
-      %ul
-        %li
-          %a{:href => genes_path }  Genes
-        %li
+        %td#nav_link
+          %a{:href => genes_path } Genes
+        %td#nav_link
           %a{:href => topics_path } Topics
-        %li
+        %td#nav_link
           %a{:href => users_path }  Users
+        %td#remote_user= "You are logged in as #{@remote_user.fullname}"
 
   .global_content
     %p#notice= notice
