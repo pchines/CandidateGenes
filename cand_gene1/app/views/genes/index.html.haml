@@ -3,6 +3,7 @@
   %p
     =form_tag(genes_path, :method => :get) do
       %b Disease:
+      =hidden_field_tag('disease[]', '0')
       - Gene.all_diseases.each do |d|
         =check_box_tag('disease[]', d, session[:q][:disease][d])
         =d

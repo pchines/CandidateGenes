@@ -5,11 +5,17 @@ class GenesController < ApplicationController
     session[:order] = params[:order] || session[:order] || 'symbol'
     session[:q] ||= {}
     if params[:disease]
-      session[:q][:disease] = {}
-      params[:disease].each do |d|
-        session[:q][:disease][d] = 1
+      params[:disease].delete('0')
+      if params[:disease].empty?
+        session[:q][:disease] = nil
+      else
+        session[:q][:disease] = {}
+        params[:disease].each do |d|
+          session[:q][:disease][d] = 1
+        end
       end
-    elsif !session[:q][:disease]
+    end
+    if !session[:q][:disease]
       session[:q][:disease] = {}
       Gene.all_diseases.each do |d|
         session[:q][:disease][d] = 1
