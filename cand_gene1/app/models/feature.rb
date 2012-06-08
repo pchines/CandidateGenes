@@ -28,9 +28,15 @@ class Feature < ActiveRecord::Base
   end
 
   def url=(url)
-    clean = url.sub(/^\s+/,'')
-    if !clean.match(/^(ftp|http|https):\/\//)
-      clean = 'http://' + clean
+    if url.nil?
+      clean = ''
+    else
+      clean = url.sub(/^\s+/,'')
+    end
+    if !clean.empty?
+      if !clean.match(/^(ftp|http|https):\/\//)
+        clean = 'http://' + clean
+      end
     end
     write_attribute(:url, clean)
   end
