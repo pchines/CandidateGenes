@@ -67,6 +67,7 @@ class FeaturesController < ApplicationController
   def update
     @gene    = Gene.find(params[:gene_id])
     @feature = @gene.features.find(params[:id])
+    params[:feature][:user_id] = @remote_user.id
 
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
