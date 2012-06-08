@@ -6,8 +6,7 @@ module ApplicationHelper
     if (text.nil?)
       return ""
     end
-    short = text
-    short.sub!(/(<(br|p)>|\.\s).*/, '...')
+    short = text.sub(/(<(br|p)>|\.\s).*/, '...')
     if short.length > @@MAX
       short = short[0,@@MAX-3] + '...'
     end
@@ -18,8 +17,7 @@ module ApplicationHelper
     if (url.nil?)
       return ""
     end
-    short = url
-    short.sub!(/^https?:\/\//, '')
+    short = url.sub(/^https?:\/\//, '')
     if short.length > @@MAX_URL_LENGTH
       short = short[0,@@MAX_URL_LENGTH] + '...'
     end
