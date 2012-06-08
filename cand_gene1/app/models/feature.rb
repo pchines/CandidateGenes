@@ -26,4 +26,12 @@ class Feature < ActiveRecord::Base
       return "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&id=#{self.pubmed}&retmode=ref&cmd=prlinks"
     end
   end
+
+  def url=(url)
+    clean = url.sub(/^\s+/,'')
+    if !clean.match(/^(ftp|http|https):\/\//)
+      clean = 'http://' + clean
+    end
+    write_attribute(:url, clean)
+  end
 end
