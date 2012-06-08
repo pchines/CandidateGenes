@@ -15,7 +15,7 @@
   = link_to(@feature.url, @feature.url)
 %p
   %b Comment:
-  = @feature.comment.html_safe
+  = html_text(@feature.comment)
 %p
   %b Rating:
   = @feature.rating

@@ -2,6 +2,13 @@ module ApplicationHelper
   @@MAX = 200
   @@MAX_URL_LENGTH = 20
 
+  def html_text(text)
+    if (text.nil?)
+      return ""
+    end
+    return text.html_safe
+  end
+
   def short_text(text)
     if (text.nil?)
       return ""
