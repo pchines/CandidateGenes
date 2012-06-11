@@ -15,17 +15,20 @@
       %td= f.label :topic_id
       %td= f.select :topic_id, Topic.all_for_select
     %tr
+      %td
+      %td#topic_desc= html_text(@feature.topic ? @feature.topic.description : nil)
+    %tr
       .field
       %td= f.label :pubmed
-      %td= f.text_field :pubmed
+      %td= f.text_field :pubmed, :size => 12
     %tr
       .field
       %td= f.label :author
-      %td= f.text_field :author
+      %td= f.text_field :author, :size => 80
     %tr
       .field
       %td= f.label :url
-      %td= f.url_field :url
+      %td= f.url_field :url, :size => 80
     %tr
       .field
       %td= f.label :comment
