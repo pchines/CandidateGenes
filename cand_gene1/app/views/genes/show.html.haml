@@ -29,6 +29,9 @@
 = link_to 'Edit this gene', edit_gene_path(@gene)
 \|
 = link_to 'Back to gene list', genes_path
+- if @remote_user.is_admin
+  \|
+  = link_to 'Delete this gene', @gene, :method => :delete, :confirm => 'Are you sure?', :class => 'admin_task'
 
 = render 'feature_table'
 

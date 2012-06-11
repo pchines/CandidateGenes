@@ -4,7 +4,15 @@
 
 .criteria {
   border: solid 1px gray;
-  background-color: #CFC;
+  background-color: #DDD;
   padding: 1em;
   margin: 1em;
+}
+
+a:link.admin_task,a:visited.admin_task {
+  color: #F00;
+}
+a:hover.admin_task,a:active.admin_task {
+  color: #CCC;
+  background-color: #F00;
 }
