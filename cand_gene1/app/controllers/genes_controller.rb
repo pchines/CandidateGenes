@@ -62,14 +62,20 @@ class GenesController < ApplicationController
   # POST /genes
   # POST /genes.json
   def create
-    @gene = Gene.new(params[:gene])
-
-    respond_to do |format|
-      if @gene.save
-        format.html { redirect_to @gene, notice: 'Gene was successfully created.' }
-        format.json { render json: @gene, status: :created, location: @gene }
-      else
-        format.html { render action: "new" }
+    begin
+      @gene = Gene.new(params[:gene])
+      respond_to do |format|
+        if @gene.save
+          format.html { redirect_to @gene, notice: 'Gene was successfully created.' }
+          format.json { render json: @gene, status: :created, location: @gene }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @gene.errors, status: :unprocessable_entity }
+        end
+      end
+    rescue ActiveRecord::RecordNotUnique
+      respond_to do |format|
+        format.html { redirect_to new_gene_path, notice: 'Gene name/disease already in use.' }
         format.json { render json: @gene.errors, status: :unprocessable_entity }
       end
     end

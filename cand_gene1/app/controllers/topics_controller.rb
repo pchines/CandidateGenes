@@ -44,13 +44,13 @@ class TopicsController < ApplicationController
     begin
       @topic = Topic.new(params[:topic])
       respond_to do |format|
-	if @topic.save
-	  format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
-	  format.json { render json: @topic, status: :created, location: @topic }
-	else
-	  format.html { render action: "new", notice: 'Topic name already in use.' }
-	  format.json { render json: @topic.errors, status: :unprocessable_entity }
-	end
+        if @topic.save
+          format.html { redirect_to topics_path, notice: 'Topic was successfully created.' }
+          format.json { render json: @topic, status: :created, location: @topic }
+        else
+          format.html { render action: "new", notice: 'Topic name already in use.' }
+          format.json { render json: @topic.errors, status: :unprocessable_entity }
+        end
       end
     rescue ActiveRecord::RecordNotUnique
       respond_to do |format|
@@ -58,7 +58,6 @@ class TopicsController < ApplicationController
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PUT /topics/1
@@ -87,5 +86,10 @@ class TopicsController < ApplicationController
       format.html { redirect_to topics_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_desc
+    @topic = Topic.find(params[:id])
+    render html_text(@topic.description)
   end
 end
