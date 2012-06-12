@@ -3,6 +3,12 @@ class GenesController < ApplicationController
   # GET /genes.json
   def index
     session[:order] = params[:order] || session[:order] || 'symbol'
+    if session[:order] == 'score'
+      session[:order] << ' desc, topic_count desc'
+    elsif session[:order] == 'topic_count'
+      session[:order] << ' desc, score desc'
+    end
+
     session[:q] ||= {}
     if params[:disease]
       params[:disease].delete('0')
