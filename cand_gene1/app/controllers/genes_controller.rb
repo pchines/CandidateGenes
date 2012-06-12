@@ -3,12 +3,6 @@ class GenesController < ApplicationController
   # GET /genes.json
   def index
     session[:order] = params[:order] || session[:order] || 'symbol'
-    if session[:order] == 'score'
-      session[:order] << ' desc, topic_count desc'
-    elsif session[:order] == 'topic_count'
-      session[:order] << ' desc, score desc'
-    end
-
     session[:q] ||= {}
     if params[:disease]
       params[:disease].delete('0')
@@ -28,7 +22,13 @@ class GenesController < ApplicationController
       end
     end
 
-    @genes = Gene.find(:all, :order => session[:order], :conditions => {
+    order = session[:order]
+    if order == 'score'
+      order << ' desc, topic_count desc'
+    elsif order == 'topic_count'
+      order << ' desc, score desc'
+    end
+    @genes = Gene.find(:all, :order => order, :conditions => {
       :disease => session[:q][:disease].keys
     })
 
