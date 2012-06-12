@@ -3,6 +3,9 @@
   %p
     =form_tag(genes_path, :method => :get) do
       %p
+        %b Gene:
+        =text_field_tag('symbol', session[:q][:symbol])
+      %p
         %b Disease:
         =hidden_field_tag('disease[]', '0')
         - Gene.all_diseases.each do |d|
@@ -16,6 +19,9 @@
           =check_box_tag('decision[]', d, session[:q][:decision].include?(d))
           = d.empty? ? '(not unassigned)' : d
           &nbsp;&nbsp;
+      %p
+        %b Assigned to:
+        =select_tag('user_id', options_for_select(User.all_for_select, session[:q][:user_id]), :include_blank => true)
       %p= submit_tag('Query')
 
 %h1 Gene List

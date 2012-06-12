@@ -12,12 +12,25 @@ class GenesController < ApplicationController
       session[:q][field] = values
     end
   end
+  def _update_session_query(field, default=nil)
+    if params[field].blank?
+      if default.nil?
+        session[:q].delete(field)
+      else
+        session[:q][field] = default
+      end
+    else
+      session[:q][field] = params[field]
+    end
+  end
 
   # GET /genes
   # GET /genes.json
   def index
     session[:order] = params[:order] || session[:order] || 'symbol'
     session[:q] ||= {}
+    _update_session_query(:symbol)
+    _update_session_query(:user_id)
     _update_session_query_list(:disease, Gene.all_diseases)
     _update_session_query_list(:decision, Gene.all_decisions)
 
