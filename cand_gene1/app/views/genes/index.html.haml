@@ -2,12 +2,20 @@
   %h3 Search Criteria
   %p
     =form_tag(genes_path, :method => :get) do
-      %b Disease:
-      =hidden_field_tag('disease[]', '0')
-      - Gene.all_diseases.each do |d|
-        =check_box_tag('disease[]', d, session[:q][:disease][d])
-        =d
-        &nbsp;&nbsp;
+      %p
+        %b Disease:
+        =hidden_field_tag('disease[]', '0')
+        - Gene.all_diseases.each do |d|
+          =check_box_tag('disease[]', d, session[:q][:disease].include?(d))
+          =d
+          &nbsp;&nbsp;
+      %p
+        %b Decision:
+        =hidden_field_tag('decision[]', '0')
+        - Gene.all_decisions.each do |d|
+          =check_box_tag('decision[]', d, session[:q][:decision].include?(d))
+          = d.empty? ? '(not unassigned)' : d
+          &nbsp;&nbsp;
       %p= submit_tag('Query')
 
 %h1 Gene List

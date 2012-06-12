@@ -1,26 +1,25 @@
 class GenesController < ApplicationController
+  def _update_session_query_list(field, values)
+    if params[field]
+      params[field].delete('0')
+      if params[field].empty?
+        session[:q][field] = nil
+      else
+        session[:q][field] = params[field]
+      end
+    end
+    if !session[:q][field]
+      session[:q][field] = values
+    end
+  end
+
   # GET /genes
   # GET /genes.json
   def index
     session[:order] = params[:order] || session[:order] || 'symbol'
     session[:q] ||= {}
-    if params[:disease]
-      params[:disease].delete('0')
-      if params[:disease].empty?
-        session[:q][:disease] = nil
-      else
-        session[:q][:disease] = {}
-        params[:disease].each do |d|
-          session[:q][:disease][d] = 1
-        end
-      end
-    end
-    if !session[:q][:disease]
-      session[:q][:disease] = {}
-      Gene.all_diseases.each do |d|
-        session[:q][:disease][d] = 1
-      end
-    end
+    _update_session_query_list(:disease, Gene.all_diseases)
+    _update_session_query_list(:decision, Gene.all_decisions)
 
     order = session[:order]
     if order == 'score'
@@ -28,9 +27,7 @@ class GenesController < ApplicationController
     elsif order == 'topic_count'
       order << ' desc, score desc'
     end
-    @genes = Gene.find(:all, :order => order, :conditions => {
-      :disease => session[:q][:disease].keys
-    })
+    @genes = Gene.find(:all, :order => order, :conditions => session[:q])
 
     respond_to do |format|
       format.html # index.html.erb
