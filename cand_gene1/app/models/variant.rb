@@ -1,5 +1,5 @@
 class Variant < ActiveRecord::Base
-  attr_accessible :dbsnp, :freq, :freq_finn, :function, :interest, :key, :nmi, :source, :validated
+  attr_accessible :dbsnp, :freq, :freq_finn, :var_func, :interest, :var_key, :nmi, :source, :validated, :gdna, :freq_source, :freq_finn_source
   belongs_to :gene
   acts_as_versioned
 

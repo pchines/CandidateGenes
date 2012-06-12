@@ -18,7 +18,11 @@
     %th Aliases
     %th= link_to 'Long name', genes_path(:order => 'long_name')
     %th= link_to 'Disease', genes_path(:order => 'disease')
-    %th Score<br>(Topics)
+    %th= link_to 'Decision', genes_path(:order => 'decision')
+    %th
+      =link_to 'Score', genes_path(:order => 'score')
+      %br
+      =link_to '(Topics)', genes_path(:order => 'topic_count')
     %th Summary
     %th= link_to 'Assigned to', genes_path(:order => 'user_id')
 
@@ -28,6 +32,7 @@
       %td= gene.gene_aliases
       %td= gene.long_name
       %td= gene.disease
+      %td= gene.decision
       %td= sprintf("%.1f (%d)", gene.score, gene.topic_count)
       %td= short_text(gene.summary)
       %td= gene.assigned_to

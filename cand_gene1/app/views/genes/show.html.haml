@@ -11,6 +11,9 @@
   %b Long name:
   = @gene.long_name
 %p
+  %b Gene info:
+  = html_text(@gene.gene_info)
+%p
   %b Disease:
   = @gene.disease
 %p
@@ -25,6 +28,9 @@
 %p
   %b Overall score:
   = "%.1f" % @gene.score
+%p
+  %b Decision:
+  = @gene.decision
 
 = link_to 'Edit this gene', edit_gene_path(@gene)
 \|

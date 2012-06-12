@@ -1,5 +1,5 @@
 class Gene < ActiveRecord::Base
-  attr_accessible :user_id, :long_name, :summary, :symbol, :disease
+  attr_accessible :user_id, :long_name, :summary, :symbol, :disease, :gene_info, :decision
   has_many :features
   has_many :aliases
   has_many :variants
@@ -22,27 +22,22 @@ class Gene < ActiveRecord::Base
     end
   end
 
-  def score
-    if @score.nil?
-      fx = self.features.select('topic_id, avg(rating) as rating').where('rating > 0').group('topic_id')
-      @topic_count = fx.length
-      @score = 0.0
-      if @topic_count > 0
-        fx.collect { |f| @score += f.rating }
-        @score /= @topic_count
-      end
+  def calc_score
+    fx = self.features.select('topic_id, avg(rating) as rating').where('rating > 0').group('topic_id')
+    write_attribute(:topic_count, fx.length)
+    score = 0.0
+    if fx.length > 0
+      fx.each { |f| score += f.rating }
+      score /= fx.length
     end
-    return @score
-  end
-
-  def topic_count
-    if @topic_count.nil?
-      self.score
-    end
-    return @topic_count
+    write_attribute(:score, score)
   end
 
   def self.all_diseases
     return self.select(:disease).uniq.order('disease').collect { |g| g.disease }
+  end
+
+  def self.all_decisions
+    return ['', 'Drop', 'Validate', 'Followup']
   end
 end

@@ -1,13 +1,18 @@
 %tr
-  %td= link_to image_tag('view-icon.png', :alt => 'Show'), gene_variant_path(variant.gene_id,variant.id)
   %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_gene_variant_path(variant.gene_id,variant.id)
-  %td= link_to image_tag('delete-icon.png', :alt => 'Delete'), gene_variant_path(variant.gene_id,variant.id), :confirm => 'Are you sure?', :method => :delete
-  %td= link_to variant.key, variant.ucsc_link
-  %td= variant.function
+  %td= link_to variant.var_key, variant.ucsc_link
+  %td= variant.gdna
+  %td= variant.var_func
   %td= variant.interest
   %td= variant.nmi
   %td= variant.validation_status
   %td= variant.dbsnp
-  %td= variant.freq
-  %td= variant.freq_finn
+  %td
+    = sprintf("%.1f", variant.freq)
+    &nbsp;
+    = variant.freq_source ? "(#{variant.freq_source})" : ""
+  %td
+    = sprintf("%.1f", variant.freq_finn)
+    &nbsp;
+    = variant.freq_finn_source ? "(#{variant.freq_finn_source})" : ""
   %td= variant.source

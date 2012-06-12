@@ -14,15 +14,23 @@
     %tr
       .field
       %td= f.label :long_name
-      %td= f.text_field :long_name
+      %td= f.text_field :long_name, :size => 80
+    %tr
+      .field
+      %td= f.label :gene_info
+      %td= f.text_area :gene_info, :cols => 80
     %tr
       .field
       %td= f.label :disease
-      %td= f.text_field :disease
+      %td= f.select :disease, Gene.all_diseases
     %tr
       .field
       %td= f.label :summary
-      %td= f.text_area :summary
+      %td= f.text_area :summary, :cols => 80
+    %tr
+      .field
+      %td= f.label :decision
+      %td= f.select :decision, Gene.all_decisions
     %tr
       .field
       %td= f.label :user_id
