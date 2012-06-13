@@ -8,7 +8,7 @@ class Gene < ActiveRecord::Base
 
   def assigned_to
     if self.user_id > 0
-	return self.user.username
+      return self.user.username
     end
     return "not assigned"
   end
@@ -31,6 +31,20 @@ class Gene < ActiveRecord::Base
       score /= fx.length
     end
     write_attribute(:score, score)
+  end
+
+  def gene_links
+    return Lookup.find_all_by_category('gene_links').collect do |link|
+      url = link.value
+      if url.matches(/ENTREZ_ID/)
+        if @entrez_id.nil?
+          next
+        end
+        url.gsub!('ENTREZ_ID',@entrez_id.to_s)
+      end
+      url.gsub!('SYMBOL',@symbol)
+      [link.item, url]
+    end
   end
 
   def self.all_diseases
