@@ -27,20 +27,30 @@ class GenesController < ApplicationController
   # GET /genes
   # GET /genes.json
   def index
-    session[:order] = params[:order] || session[:order] || 'symbol'
-    session[:q] ||= {}
-    _update_session_query(:symbol)
-    _update_session_query(:user_id)
-    _update_session_query_list(:disease, Gene.all_diseases)
-    _update_session_query_list(:decision, Gene.all_decisions)
+    try = 1;
+    begin
+      session[:order] = params[:order] || session[:order] || 'symbol'
+      session[:q] ||= {}
+      _update_session_query(:symbol)
+      _update_session_query(:user_id)
+      _update_session_query_list(:disease, Gene.all_diseases)
+      _update_session_query_list(:decision, Gene.all_decisions)
 
-    order = session[:order]
-    if order == 'score'
-      order << ' desc, topic_count desc'
-    elsif order == 'topic_count'
-      order << ' desc, score desc'
+      order = session[:order]
+      if order == 'score'
+        order << ' desc, topic_count desc'
+      elsif order == 'topic_count'
+        order << ' desc, score desc'
+      end
+      @genes = Gene.find(:all, :order => order, :conditions => session[:q])
+    rescue
+      if try == 1
+        reset_session
+        try += 1
+        retry
+      end
+      raise
     end
-    @genes = Gene.find(:all, :order => order, :conditions => session[:q])
 
     respond_to do |format|
       format.html # index.html.erb
