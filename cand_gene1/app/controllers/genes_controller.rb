@@ -33,7 +33,7 @@ class GenesController < ApplicationController
       session[:q] ||= {}
       _update_session_query(:symbol)
       _update_session_query(:user_id)
-      _update_session_query_list(:disease, Gene.all_diseases)
+      _update_session_query_list(:disease, Disease.list_all)
       _update_session_query_list(:decision, Gene.all_decisions)
 
       order = session[:order]

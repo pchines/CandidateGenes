@@ -1,0 +1,17 @@
+
+%p
+  %b Disease:
+  = @disease.disease
+%p
+  %b Description:
+  = html_text(@disease.description)
+%p
+  %b Prevalence:
+  = @disease.prevalence
+%p
+  %b Prevalence finn:
+  = @disease.prevalence_finn
+
+= link_to 'Edit', edit_disease_path(@disease)
+\|
+= link_to 'Back', diseases_path

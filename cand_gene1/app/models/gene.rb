@@ -47,10 +47,6 @@ class Gene < ActiveRecord::Base
     end
   end
 
-  def self.all_diseases
-    return self.select(:disease).uniq.order('disease').collect { |g| g.disease }
-  end
-
   def self.all_decisions
     return ['', 'Drop', 'Validate', 'Followup']
   end

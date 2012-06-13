@@ -22,7 +22,7 @@
     %tr
       .field
       %td= f.label :disease
-      %td= f.select :disease, Gene.all_diseases
+      %td= f.select :disease, Disease.list_all
     %tr
       .field
       %td= f.label :summary

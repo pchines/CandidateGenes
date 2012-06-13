@@ -8,7 +8,7 @@
       %p
         %b Disease:
         =hidden_field_tag('disease[]', '0')
-        - Gene.all_diseases.each do |d|
+        - Disease.list_all.each do |d|
           =check_box_tag('disease[]', d, session[:q][:disease].include?(d))
           =d
           &nbsp;&nbsp;

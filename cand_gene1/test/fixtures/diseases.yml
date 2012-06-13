@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  disease: MyString
+  description: MyText
+  prevalence: 1.5
+  prevalence_finn: 1.5
+
+two:
+  disease: MyString
+  description: MyText
+  prevalence: 1.5
+  prevalence_finn: 1.5

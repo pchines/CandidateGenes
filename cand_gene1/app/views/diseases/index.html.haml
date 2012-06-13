@@ -1,0 +1,23 @@
+%h1 List of Diseases
+
+%table
+  %tr
+    %th{ :colspan=>3 }
+    %th Disease
+    %th Description
+    %th Prevalence
+    %th Prevalence finn
+
+  - @diseases.each do |disease|
+    %tr
+      %td= link_to image_tag('view-icon.png', :alt => 'Show'), disease
+      %td= link_to image_tag('edit-icon.png', :alt => 'Edit'), edit_disease_path(disease)
+      %td= link_to image_tag('delete-icon.png', :alt => 'Destroy'), disease, :confirm => 'Are you sure?', :method => :delete
+      %td= disease.disease
+      %td= short_text(disease.description)
+      %td= disease.prevalence
+      %td= disease.prevalence_finn
+
+%br
+
+= link_to 'Add New Disease', new_disease_path
