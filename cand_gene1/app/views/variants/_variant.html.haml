@@ -8,11 +8,11 @@
   %td= variant.validation_status
   %td= variant.dbsnp
   %td
-    = sprintf("%.1f", variant.freq)
+    = format_float(variant.freq)
     &nbsp;
     = variant.freq_source ? "(#{variant.freq_source})" : ""
   %td
-    = sprintf("%.1f", variant.freq_finn)
+    = format_float(variant.freq_finn)
     &nbsp;
     = variant.freq_finn_source ? "(#{variant.freq_finn_source})" : ""
   %td= variant.source

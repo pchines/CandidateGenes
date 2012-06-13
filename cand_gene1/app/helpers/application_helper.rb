@@ -30,4 +30,8 @@ module ApplicationHelper
     end
     return short
   end
+
+  def format_float(val,prec=1)
+    return val.nil? ? "" : sprintf("%.#{prec}f", val)
+  end
 end
