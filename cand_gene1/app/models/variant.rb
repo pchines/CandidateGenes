@@ -4,7 +4,7 @@ class Variant < ActiveRecord::Base
   acts_as_versioned
 
   def ucsc_link
-    p = self.key.split(':')
+    p = self.var_key.split(':')
     chrom = p[0]
     varstart = p[1].to_i
     start = varstart - 1000
@@ -13,7 +13,7 @@ class Variant < ActiveRecord::Base
     end
     varend = p[2].to_i - 1
     stop  = varend + 1000
-    url = "http://genome.ucsc.edu/cgi-bin/hgTracks?db=#{self.genome}&position=#{chrom}:#{start}-#{stop}&hgct_customText=track+name=variant+visibility=pack+color=255,0,0%0a#{chrom}+#{varstart}+#{varend}+#{self.key}"
+    url = "http://genome.ucsc.edu/cgi-bin/hgTracks?db=#{self.genome}&position=#{chrom}:#{start}-#{stop}&hgct_customText=track+name=variant+visibility=pack+color=255,0,0%0a#{chrom}+#{varstart}+#{varend}+#{self.var_key}"
     return url.html_safe
   end
 

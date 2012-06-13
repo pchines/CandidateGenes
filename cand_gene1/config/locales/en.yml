@@ -8,4 +8,5 @@ helpers:
   label:
     variant:
       dbsnp: dbSNP
+      gdna: Genomic
       nmi: NMI

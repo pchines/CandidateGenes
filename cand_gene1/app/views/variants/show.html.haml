@@ -1,9 +1,13 @@
 %p
   %b Key:
-  = @variant.key
+  = @variant.genome
+  = @variant.var_key
+%p
+  %b Genomic:
+  = @variant.gdna
 %p
   %b Function:
-  = @variant.function
+  = @variant.var_func
 %p
   %b Interest:
   = @variant.interest
@@ -19,9 +23,15 @@
 %p
   %b Freq:
   = @variant.freq
+  (from
+  = @varaint.freq_source
+  )
 %p
   %b Freq in Finns:
   = @variant.freq_finn
+  (from
+  = @varaint.freq_finn_source
+  )
 %p
   %b Source:
   = @variant.source
